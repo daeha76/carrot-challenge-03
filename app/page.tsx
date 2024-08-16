@@ -7,6 +7,7 @@ import { handleForm } from "./actions";
 
 export default function Home() {
   const [state, action] = useFormState(handleForm, null);
+  console.log(state);
   return (
     <div
       className="flex flex-col 
@@ -22,6 +23,7 @@ export default function Home() {
           text="text"
           placeholder="Email"
           required
+          errors={state?.fieldErrors.Email}
         />
         <FormInput
           name="Username"
@@ -29,6 +31,7 @@ export default function Home() {
           text="text"
           placeholder="Username"
           required
+          errors={state?.fieldErrors.Username}
         />
         <FormInput
           name="Password"
@@ -36,10 +39,10 @@ export default function Home() {
           text="password"
           placeholder="Password"
           required
-          errors={state?.errors ?? []}
+          errors={state?.fieldErrors.Password}
         />
         <FormButton text="Log in" />
-        {state?.errors?.length === 0 ? (
+        {state || state === null ? (
           <></>
         ) : (
           <div

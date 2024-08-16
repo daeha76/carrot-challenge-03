@@ -13,7 +13,7 @@ export default function FormInput({
   text,
   placeholder,
   required,
-  errors,
+  errors = [],
   name,
 }: FormInputProps) {
   return (
@@ -30,13 +30,11 @@ export default function FormInput({
         placeholder={placeholder}
         required={required}
       />
-      {errors != null
-        ? errors.map((error, index) => (
-            <span className="text-red-600" key={index}>
-              {error}
-            </span>
-          ))
-        : []}
+      {errors.map((error, index) => (
+        <span className="text-red-600 block" key={index}>
+          {error}
+        </span>
+      ))}
     </div>
   );
 }
